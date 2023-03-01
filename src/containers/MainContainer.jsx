@@ -5,29 +5,44 @@ import Button from '../components/Button.jsx'
 
 const MainContainer = (props) => {
   const [mainState, changeMainState] = React.useState({
-    mode: 'history',
+    mode: 'main',
+    popup: null,
+    history: null,
     players: [
       {name: 'Sam', score: 0}, //testing only
       //{name: 'Emily', score: '0'} //testing only
     ]
   })
+  
   let subDisplay;
-
   //Display the game if new game is chosen
-  if (mainState.mode === 'game') subDisplay = <GameContainer state={mainState} changeState={changeMainState}/>;
 
-  //Display the history page if that is chosen
-  if (mainState.mode === 'history') subDisplay = <HistoryContainer state={mainState}/>;
+  switch (mainState.mode) {
+    case 'game':
+      subDisplay = <GameContainer state={mainState} changeState={changeMainState}/>;
+      break;
+    case 'history': 
+      subDisplay = <HistoryContainer state={mainState} changeState={changeMainState}/>;
+      break;
+    default:
+      subDisplay = null;
+  }
 
   return (
-    <div>
-      <header>
-        <Button text='NEW GAME' state={mainState} changeState={changeMainState} />
-      </header>
+    <div className='mainCont'>
+      <Button 
+        text='NEW GAME' 
+        classes='button big' 
+        state={mainState} 
+        changeState={changeMainState} 
+      />
       {subDisplay}
-      <footer>
-
-      </footer>
+      <Button 
+        text='VIEW HISTORY' 
+        classes='button big' 
+        state={mainState} 
+        changeState={changeMainState} 
+      />
     </div>
   )
 }

@@ -23,6 +23,10 @@ app.post('/api/addScores', controller.addScores, (req, res) => {
   return res.sendStatus(200)
 })
 
+app.get('/api/getScores', controller.getScores, (req, res) => {
+  return res.status(200).json(res.locals.scores);
+})
+
 //catch any requests not handled by our routers
 app.use((req, res) => res.status(404).send('Page was not found, sorry!'))
 

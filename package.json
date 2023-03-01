@@ -4,7 +4,7 @@
   "description": "Neato Game Tracker",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently 'NODE_ENV=development webpack serve' 'node server/server.js' ",
+    "dev": "concurrently 'NODE_ENV=development webpack serve' 'nodemon server/server.js' ",
     "build": "NODE_ENV=production webpack",
     "server": "NODE_ENV=development nodemon ./server/server.js"
   },

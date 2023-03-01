@@ -4,10 +4,22 @@ const Button = (props) => {
   let clickFunc;
   switch (props.text) {
     case 'NEW GAME':
-      clickFunc = (e) => props.changeState({...props.state, mode: 'game'});
+      clickFunc = (e) => {
+        props.changeState({...props.state, mode: 'game'});
+      }
       break;
     case 'END GAME':
-      clickFunc = (e) => props.changeState({...props.state, mode: 'history'});
+      clickFunc = (e) => {
+        props.changeState({...props.state, mode: 'history'});
+        fetch('/api/addScores', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'Application/JSON'
+          },
+        })
+        .then(data => console.log(data))
+        .catch(err => console.log('failed to add scores to database, dummy', err))
+      }
       break;
   }
 

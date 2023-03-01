@@ -5,7 +5,12 @@ import Player from '../components/Player.jsx'
 const GameContainer = (props) => {
   const players =[]
   props.state.players.forEach((player, i) => {
-    players.push(<Player index={i} state={props.state} changeState={props.changeState}/>)
+    players.push(<Player 
+      key={i} 
+      index={i} 
+      state={props.state} 
+      changeState={props.changeState}
+      />)
   })
 
   return (

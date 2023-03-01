@@ -16,8 +16,15 @@ if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res) => {
     res.status(200).sendFile(path.join(__dirname, '../src/index.html'))
   })
-  console.log(path.join(__dirname, '../src/index.html'))
 }
+
+//route for api calls
+app.post('/api/addScores', controller.addScores, (req, res) => {
+  return res.sendStatus(200)
+})
+
+//catch any requests not handled by our routers
+app.use((req, res) => res.status(404).send('Page was not found, sorry!'))
 
 //global error handler
 app.use((err, req, res, next) => {

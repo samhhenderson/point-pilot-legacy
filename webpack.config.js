@@ -7,11 +7,7 @@ module.exports = {
     filename: 'bundle.js',
     path: path.join(__dirname, '/dist')
   },
-  plugins: [
-    new HTMLWebpackPlugin({
-      template: './src/index.html'
-    })
-  ],
+  mode: process.env.NODE_ENV,
   module: {
     rules: [
       {
@@ -23,7 +19,26 @@ module.exports = {
             presets: ['@babel/preset-react', '@babel/preset-env']
           }
         }
-      }
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"]
+      },
     ]
-  }
+  },
+  devServer: {
+    static: {
+      publicPath: '/',
+      directory: path.resolve(__dirname)
+    }
+  },
+  plugins: [
+    new HTMLWebpackPlugin({
+      template: './src/index.html'
+    })
+  ],
 }

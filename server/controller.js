@@ -3,7 +3,7 @@ const db = require('./models.js')
 const controller = {};
 
 controller.addScores = (req, res, next) => {
-  const queryGameVars = ['Nerts', 'Sam Won!'] //replace with FE body
+  const queryGameVars = [req.body.gameName, req.body.gameNotes] //replace with FE body
   const queryGameString = 
   `INSERT INTO games (game_name, notes)
   VALUES ($1, $2) 
@@ -13,7 +13,7 @@ controller.addScores = (req, res, next) => {
       //pull score object values into an array; then create a set of ($1) arrays 
       //for SQL query in order to perform a multi-row insert
       const game_id = response.rows[0]._id;
-      const scoresToInsert = req.body;
+      const scoresToInsert = req.body.players;
       const pullNameAndScore = (arr) => {
         const result = [];
         arr.forEach((obj) => {
@@ -42,8 +42,7 @@ controller.getScores = (req, res, next) => {
   `SELECT s._id, s.game_id, g.game_name, g.notes, g.created_at, s.name, s.score
   FROM scores s
   LEFT OUTER JOIN games g
-  ON s.game_id = g._id;
-  `;
+  ON s.game_id = g._id;`;
   db.query(queryScoreString)
     .then((response) => {
       res.locals.scores = response.rows;

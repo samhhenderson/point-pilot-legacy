@@ -1,0 +1,28 @@
+table, th, td{
+  border: 1px white solid;
+  padding: 5px;
+}
+
+table {
+  
+
+  .gameId {width: 7%;}
+  .gameName {width: 15%}
+  .notes {width: 25%}
+  .date {width: 18%}
+  .playerName {width: 25%}
+  .score {width: 10%}
+}
+
+td, th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.fillerRow {
+  background-color: $color2;
+}
+
+.tableCont{
+  border: 10px $color2 solid;
+}

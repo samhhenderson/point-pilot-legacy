@@ -38,6 +38,7 @@
   width: none;
   max-height: 80vh;
   overflow: auto;
+  border: 10px $color1 solid;
 }
 
 .playerCont {
@@ -85,4 +86,10 @@
   border-radius: 10px;
   box-shadow: 0px 0px 10px $color1;
   z-index: 999;
+}
+
+.tableCont{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }

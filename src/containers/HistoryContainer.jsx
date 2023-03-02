@@ -4,8 +4,6 @@ import Button from '../components/Button.jsx';
 
 const HistoryContainer = (props) => {
 
-
-
   return (
     <div className='historyCont'>
       <HistoryTable 

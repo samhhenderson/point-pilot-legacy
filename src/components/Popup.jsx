@@ -3,13 +3,11 @@ import React, { useEffect } from 'react';
 const Popup = (props) => {
   let clickFunc1;
   let clickFunc2;
-  let clickFunc3 = (e) => {
-    props.changeState({...props.state, popup: null})
-  }
+  let clickFunc3 = (e) => props.changeState({...props.state, popup: null});
   let text;
   let buttonText1;
   let buttonText2;
-  let buttonText3 = 'CANCEL'
+  let buttonText3 = 'CANCEL';
   let input = null;
   let inputText;
   let button2 = null;
@@ -23,14 +21,14 @@ const Popup = (props) => {
   //set props and actions for various types of popups
   switch (props.state.popup) {
     case 'ADD PLAYER':
-      text = 'Please enter Player name'
+      text = 'Please enter Player name';
       input = <input 
         className='textInput'
         type='text' 
-        name ='newPlayerName'
+        name='newPlayerName'
         onChange={(e) => inputText = e.target.value}
       />;
-      buttonText1 = 'ACCEPT'
+      buttonText1 = 'ACCEPT';
       clickFunc1 = (e) => {
         const players = props.state.players.slice();
         players.push({name: inputText, score: 0})
@@ -41,23 +39,34 @@ const Popup = (props) => {
         });
       }
       break;
-    case 'END GAME':
-      text = 'Would you like to upload scores?'
-      let players = props.state.players.slice();
-      
-      //set button 1 to upload data and close game container
-      buttonText1 = 'UPLOAD'
 
+    case 'END GAME':
+      text = 'Would you like to upload scores?';
+      let players = props.state.players.slice();
+      input = <input 
+        className='textInput'
+        type='text' 
+        name='gameName'
+        placeholder='Notes: optional'
+        onChange={(e) => inputText = e.target.value}
+      />;
+
+      //set button 1 to upload data and close game container
+      buttonText1 = 'UPLOAD';
       clickFunc1 = (e) => {
+        let requestBody = {
+          players: props.state.players,
+          gameName: props.state.game,
+          gameNotes: inputText
+        }
         fetch('/api/addScores', {
           method: 'POST',
           headers: {
             'Content-Type': 'Application/JSON'
           },
-          body: JSON.stringify(props.state.players)
+          body: JSON.stringify(requestBody)
         })
         .then((response) => {
-
           for (const player of players) {
             player.score = 0;
           }
@@ -72,7 +81,7 @@ const Popup = (props) => {
       }
 
       //set button 2 to exit game without uploading data
-      buttonText2 = 'NO UPLOAD'
+      buttonText2 = 'NO UPLOAD';
       clickFunc2 = (e) => {
         props.changeState({
           ...props.state, 
@@ -85,14 +94,14 @@ const Popup = (props) => {
       break;
 
     case 'NEW GAME':
-      text = 'What game would you like to play?'
+      text = 'What game would you like to play?';
       input = <input 
         className='textInput'
         type='text' 
         name ='gameName'
         onChange={(e) => inputText = e.target.value}
       />;
-      buttonText1 = 'ACCEPT'
+      buttonText1 = 'ACCEPT';
       clickFunc1 = (e) => {
         props.changeState({
           ...props.state, 

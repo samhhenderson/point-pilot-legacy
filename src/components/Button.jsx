@@ -5,20 +5,11 @@ const Button = (props) => {
   switch (props.text) {
     case 'NEW GAME':
       clickFunc = (e) => {
-        props.changeState({...props.state, mode: 'game'});
-      }
-      break;
-    case 'END GAME':
-      clickFunc = (e) => {
-        props.changeState({...props.state, mode: 'main'});
-        fetch('/api/addScores', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'Application/JSON'
-          },
-          body: JSON.stringify(props.state.players)
-        })
-        .catch(err => console.log('Failed to add scores to database:', err))
+        props.changeState({
+          ...props.state, 
+          mode: 'game',
+          popup: 'NEW GAME'
+        });
       }
       break;
     case 'VIEW HISTORY':
@@ -37,11 +28,16 @@ const Button = (props) => {
 
       }
       break;
-    case 'ADD PLAYER':
+    case 'EXIT HISTORY':
+      clickFunc = (e) => {
+        props.changeState({...props.state, mode: 'main'});
+      }
+      break;
+    //for all buttons that result in a popup like END GAME, ADD PLAYER, etc
+    default:
       clickFunc = (e) => {
         props.changeState({...props.state, popup: props.text});
       }
-      break;
 
   }
 

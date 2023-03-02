@@ -22,19 +22,22 @@ const GameContainer = (props) => {
   return (
   <div className='gameCont'>
     {popup}
-    <Button 
-      text='ADD PLAYER' 
-      classes='button' 
-      state={props.state}
-      changeState={props.changeState}
-    />
+    <h1 id='gameName'>{props.state.game}</h1>
     {players}
-    <Button 
-      text='END GAME' 
-      classes='button' 
-      state={props.state} 
-      changeState={props.changeState}
-    />
+    <div id='gameButtonsCont'>
+      <Button 
+        text='ADD PLAYER' 
+        classes='button' 
+        state={props.state}
+        changeState={props.changeState}
+      />
+      <Button 
+        text='END GAME' 
+        classes='button' 
+        state={props.state} 
+        changeState={props.changeState}
+      />
+    </div>
   </div>
   )
 }

@@ -20,13 +20,13 @@ const Player = (props) => {
   }
 
   return (
-    <div className='player'>
-      <h1>{props.state.players[props.index].name}</h1>
+    <div className='playerCont'>
+      <h1 className='playerName'>{props.state.players[props.index].name}</h1>
       <div className='plusMinusCont'>
-        <button className='button' onClick={addScore}>+</button>
-        <button className='button' onClick={subtractScore}>-</button>
+        <button className='button plusMinus' onClick={addScore}>+</button>
+        <button className='button plusMinus' onClick={subtractScore}>-</button>
       </div>
-      <h1>{props.state.players[props.index].score}</h1>
+      <h1 className='scoreDisplay'>{props.state.players[props.index].score}</h1>
     </div>
   )
 }

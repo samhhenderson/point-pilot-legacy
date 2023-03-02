@@ -2,12 +2,16 @@ import React from 'react';
 import GameContainer from './GameContainer.jsx';
 import HistoryContainer from './HistoryContainer.jsx';
 import Button from '../components/Button.jsx'
+import githubmark from '../img/github-mark.png';
 
 const MainContainer = (props) => {
+  let overlay = null;
+  
   const [mainState, changeMainState] = React.useState({
     mode: 'main',
     popup: null,
     history: null,
+    game: null,
     players: [
       {name: 'Sam', score: 0}, //testing only
       //{name: 'Emily', score: '0'} //testing only
@@ -25,24 +29,38 @@ const MainContainer = (props) => {
       subDisplay = <HistoryContainer state={mainState} changeState={changeMainState}/>;
       break;
     default:
-      subDisplay = null;
+      subDisplay = (
+        <div className='mainButtonCont'>
+          <Button 
+            text='NEW GAME' 
+            classes='button big' 
+            state={mainState} 
+            changeState={changeMainState} 
+          />
+          <Button 
+            text='VIEW HISTORY' 
+            classes='button big historyBtn' 
+            state={mainState} 
+            changeState={changeMainState} 
+          />
+        </div>
+      )
   }
 
+  if (mainState.popup !== null) overlay = <div id="overlay"></div>
+
   return (
+
     <div className='mainCont'>
-      <Button 
-        text='NEW GAME' 
-        classes='button big' 
-        state={mainState} 
-        changeState={changeMainState} 
-      />
+      <h1 id='mainTitle'>SCOREBOARD</h1>
+      {overlay}
       {subDisplay}
-      <Button 
-        text='VIEW HISTORY' 
-        classes='button big' 
-        state={mainState} 
-        changeState={changeMainState} 
-      />
+      <footer>
+        <p>© Copyright 2023 Sam Henderson</p>
+        <a href='https://github.com/samhhenderson/solo-project'>
+          <img id='githublogo' src={'../img/github-mark.png'}></img>
+        </a>
+      </footer>
     </div>
   )
 }

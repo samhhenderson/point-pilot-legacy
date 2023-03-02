@@ -28,6 +28,19 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: ["style-loader", "css-loader", "sass-loader"]
       },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        use: [{
+            loader: 'file-loader',
+            options: {
+               limit: 30000,
+               name: '[name].[ext]',
+               outputPath: 'img/',
+               url: true,
+               publicPath: '.'
+            }
+        }]
+      },
     ]
   },
   plugins: [

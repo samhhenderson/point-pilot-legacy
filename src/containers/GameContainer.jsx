@@ -7,7 +7,7 @@ const GameContainer = (props) => {
   const players =[]
   let popup = null;
   props.state.players.forEach((player, i) => {
-    players.push(<Player 
+    players.push(<Player
       key={i} 
       index={i} 
       state={props.state} 

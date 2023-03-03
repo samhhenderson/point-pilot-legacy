@@ -1,14 +1,17 @@
 import React from 'react';
+import helpers from '../helpers/helperFunctions.jsx';
 
 const Button = (props) => {
   let clickFunc;
   switch (props.text) {
     case 'NEW GAME':
-      clickFunc = (e) => {
+      clickFunc = async (e) => {
+        const rules = await helpers.getRules
         props.changeState({
           ...props.state, 
           mode: 'game',
-          popup: 'NEW GAME'
+          popup: 'NEW GAME',
+          rules: rules
         });
       }
       break;

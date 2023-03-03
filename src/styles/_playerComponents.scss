@@ -1,3 +1,24 @@
+.playerCont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+  height: 70px;
+  border: 5px $color2 solid;
+  border-radius: 10px;
+  color: white;
+  font-size: 30px;
+  width: 100%;
+  gap: 15px;
+}
+
+.controlsCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
 .controls{
   display: flex;
   justify-content: center;
@@ -17,26 +38,35 @@
 .scoreDisplay {
   background-color: $color2;
   padding: 5px;
-  width: 50px;
+  min-width: 50px;
   border-radius: 10px;
   text-align: right;
 }
 
-.playerCont {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 10px;
-  height: 70px;
-  border: 5px $color2 solid;
-  border-radius: 10px;
-  color: white;
-  font-size: 30px;
-  width: 100%;
-  gap: 15px;
+.slider {
+  max-width: 70px;
+  max-height: 20px;
+  color: black
 }
 
-.plusMinusCont {
+#bets::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  color: #13bba4;
+  background: #ff4500;
+
+}
+
+#bets::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  color: #13bba4;
+
+}
+
+.betDisplay {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  line-height: 10px;
+  margin-top: -13px;
 }

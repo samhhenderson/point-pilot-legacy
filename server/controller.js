@@ -54,4 +54,19 @@ controller.getScores = (req, res, next) => {
     }))
 }
 
+controller.getRules = (req, res, next) => {
+  const queryScoreString = 
+  `SELECT *
+  FROM rules`;
+  db.query(queryScoreString)
+    .then((response) => {
+      res.locals.rules = response.rows;
+      return next();
+    })
+    .catch((err) => next({
+      log: 'controller.getRules',
+      message: { err: 'error in controller.getRules ' + err },
+    }))
+}
+
 module.exports = controller;

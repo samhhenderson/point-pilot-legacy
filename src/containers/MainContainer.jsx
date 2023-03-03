@@ -12,15 +12,15 @@ const MainContainer = (props) => {
     popup: null,
     history: null,
     game: null,
+    rules: null,
     players: [
       {name: 'Sam', score: 0}, //testing only
-      //{name: 'Emily', score: '0'} //testing only
     ]
   })
   
   let subDisplay;
-  //Display the game if new game is chosen
 
+  //Display the game if new game is chosen
   switch (mainState.mode) {
     case 'game':
       subDisplay = <GameContainer state={mainState} changeState={changeMainState}/>;

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import helpers from '../helpers/helperFunctions.jsx';
 
 const Popup = (props) => {
   let clickFunc1;
@@ -12,11 +13,6 @@ const Popup = (props) => {
   let inputText;
   let button2 = null;
 
-  // useEffect(()=> {
-  //   const enterEvent = document.addEventListener('keydown', (e) => {
-  //     if (e.code === 'Enter') clickFunc1(e);
-  //   })
-  // })
 
   //set props and actions for various types of popups
   switch (props.state.popup) {
@@ -43,6 +39,7 @@ const Popup = (props) => {
     case 'END GAME':
       text = 'Would you like to upload scores?';
       let players = props.state.players.slice();
+
       input = <input 
         className='textInput'
         type='text' 
@@ -53,10 +50,18 @@ const Popup = (props) => {
 
       //set button 1 to upload data and close game container
       buttonText1 = 'UPLOAD';
+      
+      let gName;
+      props.state.rules.forEach(rule => {
+        if (rule._id == props.state.game) {
+          gName = rule.game_name;
+        }
+      })
+    
       clickFunc1 = (e) => {
         let requestBody = {
           players: props.state.players,
-          gameName: props.state.game,
+          gameName: gName,
           gameNotes: inputText
         }
         fetch('/api/addScores', {
@@ -95,12 +100,26 @@ const Popup = (props) => {
 
     case 'NEW GAME':
       text = 'What game would you like to play?';
-      input = <input 
-        className='textInput'
-        type='text' 
-        name ='gameName'
-        onChange={(e) => inputText = e.target.value}
-      />;
+      const ruleList = [];
+      const rules = props.state.rules
+      inputText = rules[0]._id;
+      rules.forEach(rule => {
+        ruleList.push(<option key={rule._id} value={rule._id}>{rule.game_name}</option>)
+      })
+
+      input = (
+        <select
+          className='textInput'
+          type='text' 
+          name ='gameName'
+          onChange={(e) => {
+            inputText = e.target.value
+          }}
+        >
+        {ruleList}
+        </select>
+      );
+
       buttonText1 = 'ACCEPT';
       clickFunc1 = (e) => {
         props.changeState({

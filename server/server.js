@@ -27,6 +27,10 @@ app.get('/api/getScores', controller.getScores, (req, res) => {
   return res.status(200).json(res.locals.scores);
 })
 
+app.get('/api/getRules', controller.getRules, (req, res) => {
+  return res.status(200).json(res.locals.rules);
+})
+
 //catch any requests not handled by our routers
 app.use((req, res) => res.status(404).send('Page was not found, sorry!'))
 

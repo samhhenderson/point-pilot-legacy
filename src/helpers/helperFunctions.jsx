@@ -5,6 +5,7 @@ const helpers = {}
 helpers.getRules = new Promise((res, reject) => {
   fetch('/api/getRules', {
     method: 'GET',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'Application/JSON'
     },

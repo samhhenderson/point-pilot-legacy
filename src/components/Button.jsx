@@ -19,6 +19,7 @@ const Button = (props) => {
       clickFunc = (e) => {
         fetch('/api/getScores', {
           method: 'GET',
+          mode: 'no-cors',
           headers: {
             'Content-Type': 'Application/JSON'
           },

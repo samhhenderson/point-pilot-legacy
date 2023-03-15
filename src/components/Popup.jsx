@@ -66,6 +66,7 @@ const Popup = (props) => {
         }
         fetch('/api/addScores', {
           method: 'POST',
+          mode: 'no-cors',
           headers: {
             'Content-Type': 'Application/JSON'
           },

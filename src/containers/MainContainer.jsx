@@ -13,9 +13,7 @@ const MainContainer = (props) => {
     history: null,
     game: null,
     rules: null,
-    players: [
-      {name: 'Sam', score: 0}, //testing only
-    ]
+    players: []
   })
   
   let subDisplay;

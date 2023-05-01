@@ -1,20 +1,21 @@
 import React from 'react';
 import GameContainer from './GameContainer.jsx';
 import HistoryContainer from './HistoryContainer.jsx';
-import Button from '../components/Button.jsx'
+import Button from '../components/Button.jsx';
+import { useState, StateInspector } from 'reinspect'
 import githubmark from '../img/github-mark.png';
 
 const MainContainer = (props) => {
   let overlay = null;
   
-  const [mainState, changeMainState] = React.useState({
+  const [mainState, changeMainState] = useState({
     mode: 'main',
     popup: null,
     history: null,
     game: null,
     rules: null,
     players: []
-  })
+  }, 1)
   
   let subDisplay;
 
@@ -48,7 +49,6 @@ const MainContainer = (props) => {
   if (mainState.popup !== null) overlay = <div id="overlay"></div>
 
   return (
-
     <div className='mainCont'>
       <h1 id='mainTitle'>SCOREBOARD</h1>
       {overlay}
